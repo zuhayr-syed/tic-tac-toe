@@ -1,5 +1,5 @@
 #include <iostream>
-#include "dec.h"
+#include "def.cpp"
 using namespace std;
 
 int main() {
@@ -12,5 +12,5 @@ int main() {
     // cout << "Enter: " << endl;
     // cin >> n;
     // cout << "You Entered: " << n << endl;
-	// return 0;
+	return 0;
 }
