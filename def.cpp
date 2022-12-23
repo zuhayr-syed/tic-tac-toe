@@ -190,6 +190,41 @@ void check_board(int player) {
     
     cout<<"     CHECKING BOARD for: "<<user.get_move()<<endl;
     cout<<"\n";
+
+    string move = user.get_move();
+    if(board[0] == move && board[1] == move && board[2] == move) {
+        game_won = player;
+    }
+    else if(board[0] == move && board[3] == move && board[6] == move) {
+        game_won = player;
+    }
+    else if(board[0] == move && board[4] == move && board[8] == move) {
+        game_won = player;
+    }
+    else if(board[1] == move && board[4] == move && board[7] == move) {
+        game_won = player;
+    }
+    else if(board[2] == move && board[5] == move && board[8] == move) {
+        game_won = player;
+    }
+    else if(board[2] == move && board[4] == move && board[6] == move) {
+        game_won = player;
+    }
+    else if(board[3] == move && board[4] == move && board[5] == move) {
+        game_won = player;
+    }
+    else if(board[6] == move && board[7] == move && board[8] == move) {
+        game_won = player;
+    }
+
+    if(game_won == 0) {
+        cout<<"No winner found"<<endl;
+        cout<<"\n";
+    }
+    else {
+        cout<<"Winner found!"<<endl;
+        cout<<"\n";
+    }
 }
 
 void end_game() {
