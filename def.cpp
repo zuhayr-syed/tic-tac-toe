@@ -228,5 +228,18 @@ void check_board(int player) {
 }
 
 void end_game() {
-    
+    cout<<"---------------------------------------------------------"<<endl;
+    cout<<"\n";
+
+    Player user;
+    if(game_won == 1) {
+        user = player1;
+    }
+    else if (game_won == 2) {
+        user = player2;
+    }
+
+    cout<<"Player "<<game_won<<": "<<user.get_name()<< " ("<<user.get_move()<<") WON THE GAME!"<<endl;
+    cout<<"\n";
+    show_board();
 }
