@@ -203,7 +203,18 @@ void take_turn(int player) {
 
         // find position where computer already placed (to create 2 in-a-row)
         // if none, place randomly on board 
-
+        if(computer_move == -1) {
+            int move = second_pos(user.get_move());
+            if(move != -1) {
+                board[move] = user.get_move();
+                computer_move = move;
+            }
+            else {
+                int move = first_position();
+                board[move] = user.get_move();
+                computer_move = move;
+            }
+        }
 
         if(computer_move != -1) {
             cout<<"Computer placed on position: "<<computer_move + 1<<endl;
@@ -302,6 +313,91 @@ int first_position() {
         x = (rand() % 9) + 1;
     }
     return x - 1;
+}
+
+int second_pos(string type) {
+    if(board[0] == type && board[1] == " " && board[2] == " ") {
+        return 1;
+    }
+    else if(board[1] == type && board[0] == " " && board[2] == " ") {
+        return 0;
+    }
+    else if(board[2] == type && board[1] == " " && board[2] == " ") {
+        return 1;
+    }
+
+    else if(board[3] == type && board[4] == " " && board[5] == " ") {
+        return 4;
+    }
+    else if(board[4] == type && board[3] == " " && board[5] == " ") {
+        return 3;
+    }
+    else if(board[5] == type && board[3] == " " && board[4] == " ") {
+        return 3;
+    }
+
+    else if(board[6] == type && board[7] == " " && board[8] == " ") {
+        return 7;
+    }
+    else if(board[7] == type && board[6] == " " && board[8] == " ") {
+        return 6;
+    }
+    else if(board[8] == type && board[6] == " " && board[7] == " ") {
+        return 6;
+    }
+
+    else if(board[0] == type && board[3] == " " && board[6] == " ") {
+        return 3;
+    }
+    else if(board[3] == type && board[0] == " " && board[6] == " ") {
+        return 0;
+    }
+    else if(board[6] == type && board[0] == " " && board[3] == " ") {
+        return 0;
+    }
+
+    else if(board[1] == type && board[4] == " " && board[7] == " ") {
+        return 4;
+    }
+    else if(board[4] == type && board[1] == " " && board[7] == " ") {
+        return 1;
+    }
+    else if(board[7] == type && board[1] == " " && board[4] == " ") {
+        return 1;
+    }
+
+    else if(board[2] == type && board[5] == " " && board[8] == " ") {
+        return 5;
+    }
+    else if(board[5] == type && board[2] == " " && board[8] == " ") {
+        return 2;
+    }
+    else if(board[8] == type && board[2] == " " && board[5] == " ") {
+        return 2;
+    }
+
+    else if(board[0] == type && board[4] == " " && board[8] == " ") {
+        return 4;
+    }
+    else if(board[4] == type && board[0] == " " && board[8] == " ") {
+        return 0;
+    }
+    else if(board[8] == type && board[0] == " " && board[4] == " ") {
+        return 0;
+    }
+
+    else if(board[2] == type && board[4] == " " && board[6] == " ") {
+        return 4;
+    }    
+    else if(board[4] == type && board[2] == " " && board[6] == " ") {
+        return 2;
+    }
+    else if(board[6] == type && board[2] == " " && board[4] == " ") {
+        return 2;
+    }
+    else {
+        return -1;
+    }
 }
 
 int block_win(string checks) {
