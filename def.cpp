@@ -31,6 +31,7 @@ int game_won = 0;
 bool turn1 = true;
 bool turn2 = false;
 string board[9] = {" ", " ", " ", " ", " ", " ", " ", " ", " "};
+bool computer_first = true;
 
 void introduction() {
     cout<<"\n";
@@ -181,7 +182,13 @@ void take_turn(int player) {
         }
 
         // check for first computer move, if so place on random position
+        if(computer_first) {
+            int move = first_position();
+            board[move] = user.get_move();
+            computer_move = move;
 
+            computer_first = false;
+        }
 
 
         if(computer_move != -1) {
@@ -272,6 +279,15 @@ void end_game() {
     cout<<"Player "<<game_won<<": "<<user.get_name()<< " ("<<user.get_move()<<") WON THE GAME!"<<endl;
     cout<<"\n";
     show_board();
+}
+
+int first_position() {
+    int x = -1;
+    while(x == -1 || board[x - 1] != " ") {
+        srand((unsigned) time(0));
+        x = (rand() % 9) + 1;
+    }
+    return x - 1;
 }
 
 int block_win(string checks) {

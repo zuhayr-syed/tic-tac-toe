@@ -8,6 +8,7 @@ void player_setup(string name);
 void in_progress();
 void take_turn(int player);
 int block_win(string checks);
+int first_position();
 void show_board();
 void check_board(int player);
 void end_game();
