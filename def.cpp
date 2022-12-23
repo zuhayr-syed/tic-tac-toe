@@ -52,7 +52,7 @@ void introduction() {
     show_grid();
 
     while(getchar() != '\n'); // clear buffer
-    cout << "Enter any key to start the game... ";
+    cout << "Press [ENTER] to start the game... ";
     getchar();
 }
 
@@ -162,6 +162,32 @@ void take_turn(int player) {
     }
     else {
         // computer move
+        int computer_move = -1;
+
+        // check if user is about to win
+        // get the users move string 
+        string checks;
+        if(player1.get_name() != "Computer") {
+            checks = player1.get_move();
+        }
+        else {
+            checks = player2.get_move();
+        }
+
+        int block = block_win(checks);
+        if(block != -1) {
+            board[block] = user.get_move();
+            computer_move = block;
+        }
+
+        // check for first computer move, if so place on random position
+
+
+
+        if(computer_move != -1) {
+            cout<<"Computer placed on position: "<<computer_move + 1<<endl;
+            cout<<"\n";
+        }
     }
 
     cout<<"\n";
@@ -246,4 +272,82 @@ void end_game() {
     cout<<"Player "<<game_won<<": "<<user.get_name()<< " ("<<user.get_move()<<") WON THE GAME!"<<endl;
     cout<<"\n";
     show_board();
+}
+
+int block_win(string checks) {
+    if(board[0] == checks && board[1] == checks && board[2] == " ") {
+        return 2;
+    }
+    else if(board[1] == checks && board[2] == checks && board[0] == " ") {
+        return 0;
+    }
+    else if(board[0] == checks && board[2] == checks && board[1] == " ") {
+        return 1;
+    }
+    else if(board[3] == checks && board[4] == checks && board[5] == " ") {
+        return 5;
+    }
+    else if(board[4] == checks && board[5] == checks && board[3] == " ") {
+        return 3;
+    }
+    else if(board[3] == checks && board[5] == checks && board[4] == " ") {
+        return 4;
+    }
+    else if(board[6] == checks && board[7] == checks && board[8] == " ") {
+        return 8;
+    }
+    else if(board[7] == checks && board[8] == checks && board[6] == " ") {
+        return 6;
+    }
+    else if(board[6] == checks && board[8] == checks && board[7] == " ") {
+        return 7;
+    }
+    else if(board[0] == checks && board[3] == checks && board[6] == " ") {
+        return 6;
+    }
+    else if(board[3] == checks && board[6] == checks && board[0] == " ") {
+        return 0;
+    }
+    else if(board[0] == checks && board[6] == checks && board[3] == " ") {
+        return 3;
+    }
+    else if(board[1] == checks && board[4] == checks && board[7] == " ") {
+        return 7;
+    }
+    else if(board[4] == checks && board[7] == checks && board[1] == " ") {
+        return 1;
+    }
+    else if(board[1] == checks && board[7] == checks && board[4] == " ") {
+        return 4;
+    }
+    else if(board[2] == checks && board[5] == checks && board[8] == " ") {
+        return 8;
+    }
+    else if(board[5] == checks && board[8] == checks && board[2] == " ") {
+        return 2;
+    }
+    else if(board[2] == checks && board[8] == checks && board[5] == " ") {
+        return 5;
+    }
+    else if(board[0] == checks && board[4] == checks && board[8] == " ") {
+        return 8;
+    }
+    else if(board[4] == checks && board[8] == checks && board[0] == " ") {
+        return 0;
+    }
+    else if(board[0] == checks && board[8] == checks && board[4] == " ") {
+        return 4;
+    }
+    else if(board[2] == checks && board[4] == checks && board[6] == " ") {
+        return 6;
+    }    
+    else if(board[4] == checks && board[6] == checks && board[2] == " ") {
+        return 2;
+    }
+    else if(board[2] == checks && board[6] == checks && board[4] == " ") {
+        return 4;
+    }
+    else {
+        return -1;
+    }
 }
