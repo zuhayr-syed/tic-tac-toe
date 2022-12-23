@@ -7,6 +7,7 @@ void show_grid();
 void player_setup(string name);
 void in_progress();
 void take_turn(int player);
+void show_board();
 void check_board(int player);
 void end_game();
 

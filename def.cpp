@@ -30,6 +30,7 @@ Player player2;
 int game_won = 0;
 bool turn1 = true;
 bool turn2 = false;
+string board[9] = {" ", " ", " ", " ", " ", " ", " ", " ", " "};
 
 void introduction() {
     cout<<"\n";
@@ -88,7 +89,10 @@ void player_setup(string name) {
 }
 
 void in_progress() {
-    while(game_won == 0) {
+    while(game_won == 0) { 
+        cout<<"\n";
+        cout<<"---------------------------------------------------------"<<endl;
+        cout<<"\n";
         if(turn1) {
             // player 1 turn
             take_turn(1);
@@ -115,7 +119,64 @@ void take_turn(int player) {
         user = player2;
     }
     
-    cout<<"     TURN --> Player "<<player<<": "<<user.get_name()<<endl;
+    cout<<"     TURN --> Player "<<player<<": "<<user.get_name()<< " ("<<user.get_move()<<")"<<endl;
+    cout<<"\n";
+
+    int pos = 0;
+    
+    if(user.get_name() != "Computer") {
+        
+        show_board();
+        
+        bool invalid = true;
+        while(invalid) {
+            cout<<"Pick a position: "<<endl;
+            cin >> pos;
+            
+            if(pos == 1 || pos == 2 || pos == 3 || pos == 4 || pos == 5 || pos == 6 || pos == 7 || pos == 8 || pos == 9) {
+                if(board[pos-1] == " ") {
+                    invalid = false;
+                    cout<<"\n";
+                }
+                else {
+                    cout<<"Position already taken, try again"<<endl;
+                    cout<<"\n";
+
+                    cin.clear();
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                }
+            }
+            else {
+                cout<<"Invalid entry, try again"<<endl;
+                cout<<"\n";
+
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+        }
+        board[pos-1] = user.get_move();
+    }
+    else {
+        // computer move
+    }
+
+    cout<<"\n";
+    cout<<"\n";
+}
+
+void show_board()
+{
+  cout<<  "          |     |                                                  |     | \n";
+  cout << "       " << board[0] << "  |  " << board[1] << "  |  " << board[2] << "                                             1 |  2  | 3\n";
+  cout << "     _____|_____|_____                                        _____|_____|_____\n";
+  cout << "          |     |                                                  |     | \n";
+  cout << "       " << board[3] << "  |  " << board[4] << "  |  " << board[5] << "                                             4 |  5  | 6\n";
+  cout << "     _____|_____|_____                                        _____|_____|_____\n";
+  cout<<  "          |     |                                                  |     | \n";
+  cout << "       " << board[6] << "  |  " << board[7] << "  |  " << board[8] << "                                             7 |  8  | 9\n";
+  cout << "          |     |                                                  |     | \n";
+  cout << "\n";
+
 }
 
 void check_board(int player) {
@@ -128,6 +189,7 @@ void check_board(int player) {
     }
     
     cout<<"     CHECKING BOARD for: "<<user.get_move()<<endl;
+    cout<<"\n";
 }
 
 void end_game() {
