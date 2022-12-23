@@ -27,6 +27,9 @@ void Player::set_move(string m) {
 
 Player player1;
 Player player2;
+int game_won = 0;
+bool turn1 = true;
+bool turn2 = false;
 
 void introduction() {
     cout<<"\n";
@@ -84,8 +87,47 @@ void player_setup(string name) {
     }
 }
 
-void take_turn() {
+void in_progress() {
+    while(game_won == 0) {
+        if(turn1) {
+            // player 1 turn
+            take_turn(1);
+            check_board(1);
+            turn1 = false;
+            turn2 = true;
+        }
+        else if (turn2) {
+            // player 2 turn
+            take_turn(2);
+            check_board(2);
+            turn2 = false;
+            turn1 = true;
+        }
+    }
+}
+
+void take_turn(int player) {
+    Player user;
+    if(player == 1) {
+        user = player1;
+    }
+    else if (player == 2) {
+        user = player2;
+    }
     
+    cout<<"     TURN --> Player "<<player<<": "<<user.get_name()<<endl;
+}
+
+void check_board(int player) {
+    Player user;
+    if(player == 1) {
+        user = player1;
+    }
+    else if (player == 2) {
+        user = player2;
+    }
+    
+    cout<<"     CHECKING BOARD for: "<<user.get_move()<<endl;
 }
 
 void end_game() {

@@ -5,7 +5,9 @@ using namespace std;
 void introduction();
 void show_grid();
 void player_setup(string name);
-void take_turn();
+void in_progress();
+void take_turn(int player);
+void check_board(int player);
 void end_game();
 
 #endif

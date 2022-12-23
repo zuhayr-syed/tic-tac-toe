@@ -4,7 +4,7 @@ using namespace std;
 
 int main() {
 	introduction();
-	take_turn();
+	in_progress();
 	end_game();
 	return 0;
 }
