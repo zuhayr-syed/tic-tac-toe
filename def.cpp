@@ -165,22 +165,6 @@ void take_turn(int player) {
         // computer move
         int computer_move = -1;
 
-        // check if user is about to win
-        // get the users move string 
-        string checks;
-        if(player1.get_name() != "Computer") {
-            checks = player1.get_move();
-        }
-        else {
-            checks = player2.get_move();
-        }
-
-        int block = block_win(checks);
-        if(block != -1) {
-            board[block] = user.get_move();
-            computer_move = block;
-        }
-
         // check for first computer move, if so place on random position
         if(computer_first) {
             int move = first_position();
@@ -189,6 +173,36 @@ void take_turn(int player) {
 
             computer_first = false;
         }
+
+        // check if computer is about to win and find the third position
+        if(computer_move == -1) {
+            int win_position = block_win(user.get_move());
+            if(win_position != -1) {
+                board[win_position] = user.get_move();
+                computer_move = win_position;
+            }
+        }
+
+        // check if user is about to win
+        if(computer_move == -1) {
+            // get the users move string 
+            string checks;
+            if(player1.get_name() != "Computer") {
+                checks = player1.get_move();
+            }
+            else {
+                checks = player2.get_move();
+            }
+
+            int block = block_win(checks);
+            if(block != -1) {
+                board[block] = user.get_move();
+                computer_move = block;
+            }
+        }
+
+        // find position where computer already placed (to create 2 in-a-row)
+        // if none, place randomly on board 
 
 
         if(computer_move != -1) {
