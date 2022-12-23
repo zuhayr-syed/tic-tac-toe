@@ -50,6 +50,10 @@ void introduction() {
     cout<<"The grid is shown below:\n\n";
     
     show_grid();
+
+    while(getchar() != '\n'); // clear buffer
+    cout << "Enter any key to start the game... ";
+    getchar();
 }
 
 void show_grid() {
