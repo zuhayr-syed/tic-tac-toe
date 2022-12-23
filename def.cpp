@@ -287,6 +287,12 @@ void check_board(int player) {
         cout<<"Winner found!"<<endl;
         cout<<"\n";
     }
+
+    if(board[0] != " " && board[1] != " " && board[2] != " " && board[3] != " " && board[4] != " " && board[5] != " " &&
+        board[6] != " " && board[7] != " " && board[8] != " ") {
+        game_won = -1;
+    }
+
 }
 
 void end_game() {
@@ -296,13 +302,19 @@ void end_game() {
     Player user;
     if(game_won == 1) {
         user = player1;
+        cout<<"Player "<<game_won<<": "<<user.get_name()<< " ("<<user.get_move()<<") WON THE GAME!"<<endl;
+        cout<<"\n";
     }
     else if (game_won == 2) {
         user = player2;
+        cout<<"Player "<<game_won<<": "<<user.get_name()<< " ("<<user.get_move()<<") WON THE GAME!"<<endl;
+        cout<<"\n";
+    }
+    else {
+        cout<<"No Players won: DRAW"<<endl;
+        cout<<"\n";
     }
 
-    cout<<"Player "<<game_won<<": "<<user.get_name()<< " ("<<user.get_move()<<") WON THE GAME!"<<endl;
-    cout<<"\n";
     show_board();
 }
 
