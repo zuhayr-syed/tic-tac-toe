@@ -32,6 +32,7 @@ bool turn1 = true;
 bool turn2 = false;
 string board[9] = {" ", " ", " ", " ", " ", " ", " ", " ", " "};
 bool computer_first = true;
+int turn_count = 0;
 
 void introduction() {
     cout<<"\n";
@@ -124,7 +125,8 @@ void take_turn(int player) {
         user = player2;
     }
     
-    cout<<"     TURN --> Player "<<player<<": "<<user.get_name()<< " ("<<user.get_move()<<")"<<endl;
+    turn_count += 1;
+    cout<<"     TURN #"<<turn_count<<" --> Player "<<player<<": "<<user.get_name()<< " ("<<user.get_move()<<")"<<endl;
     cout<<"\n";
 
     int pos = 0;
