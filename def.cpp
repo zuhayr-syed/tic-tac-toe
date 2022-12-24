@@ -53,7 +53,7 @@ void introduction() {
     
     show_grid();
 
-    while(getchar() != '\n'); // clear buffer
+    while(getchar() != '\n'); // clear buffer from '\n'
     cout << "Press [ENTER] to start the game... ";
     getchar();
 }
@@ -72,8 +72,10 @@ void show_grid() {
 }
 
 void player_setup(string name) {
+    // random number [1,2]	
     srand((unsigned) time(0));
     int x = (rand() % 2) + 1;
+	
     if(x == 1) {
         cout<<"Player 1: "<<name<<" --> X"<<endl;
         cout<<"Player 2: "<<"Computer --> O"<<endl;
@@ -132,7 +134,7 @@ void take_turn(int player) {
     int pos = 0;
     
     if(user.get_name() != "Computer") {
-        
+        // user move
         show_board();
         
         bool invalid = true;
@@ -176,7 +178,7 @@ void take_turn(int player) {
             computer_first = false;
         }
 
-        // check if computer is about to win and find the third position
+        // check if computer can win and find the last position
         if(computer_move == -1) {
             int win_position = block_win(user.get_move());
             if(win_position != -1) {
@@ -185,7 +187,7 @@ void take_turn(int player) {
             }
         }
 
-        // check if user is about to win
+        // check if user is about to win and block position
         if(computer_move == -1) {
             // get the users move string 
             string checks;
@@ -203,8 +205,8 @@ void take_turn(int player) {
             }
         }
 
-        // find position where computer already placed (to create 2 in-a-row)
-        // if none, place randomly on board 
+        // find position where computer already placed to setup a win (to create 2 in-a-row)
+        // if there is no position, place randomly on board 
         if(computer_move == -1) {
             int move = second_pos(user.get_move());
             if(move != -1) {
@@ -290,6 +292,7 @@ void check_board(int player) {
         cout<<"\n";
     }
 
+    // if board is full
     if(board[0] != " " && board[1] != " " && board[2] != " " && board[3] != " " && board[4] != " " && board[5] != " " &&
         board[6] != " " && board[7] != " " && board[8] != " ") {
         game_won = -1;
@@ -323,6 +326,7 @@ void end_game() {
 int first_position() {
     int x = -1;
     while(x == -1 || board[x - 1] != " ") {
+	// random number [1,9]
         srand((unsigned) time(0));
         x = (rand() % 9) + 1;
     }
