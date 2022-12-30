@@ -34,6 +34,17 @@ string board[9] = {" ", " ", " ", " ", " ", " ", " ", " ", " "};
 bool computer_first = true;
 int turn_count = 0;
 
+void reset_states() {
+    game_won = 0;
+    turn1 = true;
+    turn2 = false;
+    for(int y=0; y<9; y++) {
+        board[y] = " ";
+    }
+    computer_first = true;
+    turn_count = 0;
+}
+
 void introduction() {
     cout<<"\n";
     cout<<"   *****************\n";
@@ -321,6 +332,10 @@ void end_game() {
     }
 
     show_board();
+
+    cout<<"\n";
+    cout<<"---------------------------------------------------------"<<endl;
+    cout<<"\n";
 }
 
 int first_position() {

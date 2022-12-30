@@ -2,6 +2,7 @@
 #define TIC_TAC_TOE_DEC_H
 using namespace std;
 
+void reset_states();
 void introduction();
 void show_grid();
 void player_setup(string name);

@@ -3,8 +3,23 @@
 using namespace std;
 
 int main() {
-	introduction();
-	in_progress();
-	end_game();
+
+	while(1) {
+
+		reset_states();
+		
+		introduction();
+		in_progress();
+		end_game();
+		
+		while(getchar() != '\n'); // clear buffer
+		cout << "Press [ENTER] to restart the game... ";
+		getchar();
+		
+		cout<<"\n";
+		cout<<"---------------------------------------------------------"<<endl;
+		cout<<"\n";
+	}
+	
 	return 0;
 }
