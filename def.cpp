@@ -354,11 +354,27 @@ void end_game() {
     Player user;
     if(game_won == 1) {
         user = player1;
+
+        if(user.get_name() == "Computer") {
+            cout<<"--- YOU LOST D: ---"<<endl;
+        }
+        else {
+            cout<<"--- YOU WON :D ---"<<endl;
+        }
+
         cout<<"Player "<<game_won<<": "<<user.get_name()<< " ("<<user.get_move()<<") WON THE GAME!"<<endl;
         cout<<"\n";
     }
     else if (game_won == 2) {
         user = player2;
+
+        if(user.get_name() == "Computer") {
+            cout<<"--- YOU LOST D: ---"<<endl;
+        }
+        else {
+            cout<<"--- YOU WON :D ---"<<endl;
+        }
+
         cout<<"Player "<<game_won<<": "<<user.get_name()<< " ("<<user.get_move()<<") WON THE GAME!"<<endl;
         cout<<"\n";
     }
