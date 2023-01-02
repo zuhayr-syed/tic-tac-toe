@@ -4,8 +4,8 @@
 using namespace std;
 
 class Score {
-    int user_wins = 0;
-    int computer_wins = 0;
+    int user_wins;
+    int computer_wins;
     public:
         void set_computer(int);
         void set_user(int);
@@ -70,9 +70,11 @@ void reset_states() {
 
 void introduction() {
     cout<<"\n";
-    cout<<"   *****************\n";
-    cout<<"      Tic-Tac-Toe\n";
-    cout<<"   *****************\n";
+    cout<<"          *****************************\n";
+    cout<<"                   Tic-Tac-Toe\n";
+    cout<<"                        VS\n";
+    cout<<"                     Computer\n";
+    cout<<"          *****************************\n";
     cout<<"\n";
 
     string name;
@@ -80,6 +82,9 @@ void introduction() {
         cout<<"Enter your name to begin: "<<endl;
         cin >> name;
         cout<<"\n";
+
+        player_wins.set_computer(0);
+        player_wins.set_user(0);
     }
     else {
         if(player1.get_name() == "Computer") {
@@ -96,6 +101,7 @@ void introduction() {
     cout<<"The grid is shown below:\n\n";
     
     show_grid();
+    show_score();
 
     if(setup) {
         while(getchar() != '\n'); // clear buffer from '\n'
@@ -115,7 +121,6 @@ void show_grid() {
     cout << "     |     |      \n";
     cout << "  7  |  8  |  9   \n";
     cout << "     |     |      \n\n";
-    cout<<"\n";
 }
 
 void player_setup(string name) {
@@ -357,9 +362,11 @@ void end_game() {
 
         if(user.get_name() == "Computer") {
             cout<<"--- YOU LOST D: ---"<<endl;
+            player_wins.set_computer(player_wins.get_computer() + 1);
         }
         else {
             cout<<"--- YOU WON :D ---"<<endl;
+            player_wins.set_user(player_wins.get_user() + 1);
         }
 
         cout<<"Player "<<game_won<<": "<<user.get_name()<< " ("<<user.get_move()<<") WON THE GAME!"<<endl;
@@ -370,9 +377,11 @@ void end_game() {
 
         if(user.get_name() == "Computer") {
             cout<<"--- YOU LOST D: ---"<<endl;
+            player_wins.set_computer(player_wins.get_computer() + 1);
         }
         else {
             cout<<"--- YOU WON :D ---"<<endl;
+            player_wins.set_user(player_wins.get_user() + 1);
         }
 
         cout<<"Player "<<game_won<<": "<<user.get_name()<< " ("<<user.get_move()<<") WON THE GAME!"<<endl;
@@ -384,6 +393,7 @@ void end_game() {
     }
 
     show_board();
+    show_score();
 
     cout<<"\n";
     cout<<"---------------------------------------------------------"<<endl;
@@ -398,6 +408,13 @@ int first_position() {
         x = (rand() % 9) + 1;
     }
     return x - 1;
+}
+
+void show_score() {
+    cout<<"\n";
+    cout<<"Your wins: "<<player_wins.get_user()<<endl;
+    cout<<"Computer wins: "<<player_wins.get_computer()<<endl;
+    cout<<"\n";
 }
 
 int second_pos(string type) {

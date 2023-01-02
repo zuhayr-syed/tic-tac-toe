@@ -10,6 +10,7 @@ void in_progress();
 void take_turn(int player);
 int block_win(string checks);
 int first_position();
+void show_score();
 int second_pos(string type);
 void show_board();
 void check_board(int player);
