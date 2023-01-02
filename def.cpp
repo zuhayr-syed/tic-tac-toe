@@ -3,6 +3,26 @@
 #include "dec.h"
 using namespace std;
 
+class Score {
+    int user_wins = 0;
+    int computer_wins = 0;
+    public:
+        void set_computer(int);
+        void set_user(int);
+        int get_computer() {
+            return computer_wins;
+        }
+        int get_user() {
+            return user_wins;
+        }
+};
+void Score::set_computer(int n) {
+    computer_wins = n;
+}
+void Score::set_user(int m) {
+    user_wins = m;
+}
+
 class Player {
     string name;
     string move;
@@ -15,7 +35,6 @@ class Player {
         string get_move() {
             return move;
         }
-
 };
 
 void Player::set_name(string n) {
@@ -27,6 +46,10 @@ void Player::set_move(string m) {
 
 Player player1;
 Player player2;
+Score player_wins;
+bool setup = true;
+
+// game variables
 int game_won = 0;
 bool turn1 = true;
 bool turn2 = false;
@@ -53,9 +76,19 @@ void introduction() {
     cout<<"\n";
 
     string name;
-    cout<<"Enter your name to begin: "<<endl;
-	cin >> name;
-    cout<<"\n";
+    if(setup) {
+        cout<<"Enter your name to begin: "<<endl;
+        cin >> name;
+        cout<<"\n";
+    }
+    else {
+        if(player1.get_name() == "Computer") {
+            name = player2.get_name();
+        }
+        else {
+            name = player1.get_name();
+        }
+    }
     cout<<"\n";
 
     player_setup(name);
@@ -64,7 +97,10 @@ void introduction() {
     
     show_grid();
 
-    while(getchar() != '\n'); // clear buffer from '\n'
+    if(setup) {
+        while(getchar() != '\n'); // clear buffer from '\n'
+        setup = false;
+    }
     cout << "Press [ENTER] to start the game... ";
     getchar();
 }
