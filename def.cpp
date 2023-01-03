@@ -4,44 +4,46 @@
 using namespace std;
 
 class Score {
-    int user_wins;
-    int computer_wins;
+    private:
+        int user_wins;
+        int computer_wins;
     public:
         void set_computer(int);
         void set_user(int);
         int get_computer() {
-            return computer_wins;
+            return this->computer_wins;
         }
         int get_user() {
-            return user_wins;
+            return this->user_wins;
         }
 };
 void Score::set_computer(int n) {
-    computer_wins = n;
+    this->computer_wins = n;
 }
 void Score::set_user(int m) {
-    user_wins = m;
+    this->user_wins = m;
 }
 
 class Player {
-    string name;
-    string move;
+    private:
+        string name;
+        string move;
     public:
         void set_name(string);
         void set_move(string);
         string get_name() {
-            return name;
+            return this->name;
         }
         string get_move() {
-            return move;
+            return this->move;
         }
 };
 
 void Player::set_name(string n) {
-    name = n;
+    this->name = n;
 }
 void Player::set_move(string m) {
-    move = m;
+    this->move = m;
 }
 
 Player player1;
