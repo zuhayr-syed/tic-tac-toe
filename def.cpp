@@ -16,7 +16,14 @@ class Score {
         int get_user() {
             return this->user_wins;
         }
+        // constructor
+        Score();
 };
+
+Score::Score() {
+    this->computer_wins = 0;
+    this->user_wins = 0;
+}
 void Score::set_computer(int n) {
     this->computer_wins = n;
 }
@@ -37,8 +44,14 @@ class Player {
         string get_move() {
             return this->move;
         }
+        // constructor
+        Player();
 };
 
+Player::Player() {
+    this->name = "";
+    this->move = "";
+}
 void Player::set_name(string n) {
     this->name = n;
 }
